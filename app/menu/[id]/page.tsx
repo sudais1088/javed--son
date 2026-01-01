@@ -153,7 +153,8 @@ export default function ProductDetailPage() {
 
                             {/* Price and Add to Cart */}
                             {/* Price and Add to Cart */}
-                            <div className="bg-[#121212] rounded-2xl p-5 sm:p-8 border border-white/5 shadow-lg w-full">
+                            {/* Price and Add to Cart */}
+                            <div className="bg-[#121212] rounded-2xl p-3 xs:p-5 sm:p-8 border border-white/5 shadow-lg w-full">
                                 <div className="flex flex-col sm:flex-row lg:flex-col xl:flex-row items-center gap-6 sm:gap-8 justify-between">
                                     <div className="flex flex-col min-w-[120px] w-full sm:w-auto lg:w-full xl:w-auto text-center sm:text-left lg:text-center xl:text-left">
                                         <span className="text-xs text-white/40 uppercase tracking-widest mb-1 font-bold">Total Price</span>
@@ -165,33 +166,31 @@ export default function ProductDetailPage() {
 
                                     <div className="h-12 w-px bg-white/10 hidden sm:block lg:hidden xl:block" />
 
-                                    <div className="w-full sm:w-auto lg:w-full xl:w-auto flex-1 flex items-center justify-center sm:justify-end lg:justify-center xl:justify-end gap-3 sm:gap-4">
+                                    <div className="w-full sm:w-auto lg:w-full xl:w-auto flex-1 flex items-center justify-center sm:justify-end lg:justify-center xl:justify-end gap-2 xs:gap-3 sm:gap-4">
                                         {/* Quantity */}
-                                        <div className="flex items-center bg-black rounded-full border border-white/10 px-1 h-12 shadow-inner shrink-0">
+                                        <div className="flex items-center bg-black rounded-full border border-white/10 px-1 h-10 xs:h-12 shadow-inner shrink-0">
                                             <button
                                                 onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                                                className="w-10 h-full flex items-center justify-center rounded-full hover:bg-white/10 text-white/60 hover:text-white transition-colors"
+                                                className="w-8 xs:w-10 h-full flex items-center justify-center rounded-full hover:bg-white/10 text-white/60 hover:text-white transition-colors"
                                             >
                                                 <Minus size={16} />
                                             </button>
-                                            <span className="w-8 text-center font-bold text-lg text-white tabular-nums">{quantity}</span>
+                                            <span className="w-6 xs:w-8 text-center font-bold text-base xs:text-lg text-white tabular-nums">{quantity}</span>
                                             <button
                                                 onClick={() => setQuantity(quantity + 1)}
-                                                className="w-10 h-full flex items-center justify-center rounded-full hover:bg-white/10 text-white/60 hover:text-white transition-colors"
+                                                className="w-8 xs:w-10 h-full flex items-center justify-center rounded-full hover:bg-white/10 text-white/60 hover:text-white transition-colors"
                                             >
                                                 <Plus size={16} />
                                             </button>
                                         </div>
 
-
-
                                         {/* Action Button */}
                                         <button
                                             onClick={() => addToCart(item, selectedSize, quantity)}
-                                            className="flex-1 h-12 bg-gradient-to-r from-[#E3B658] to-[#d4a036] text-black font-bold uppercase tracking-widest rounded-full hover:to-[#E3B658] hover:from-[#d4a036] hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2 shadow-[0_0_25px_rgba(227,182,88,0.3)] hover:shadow-[0_0_35px_rgba(227,182,88,0.5)] whitespace-nowrap px-6"
+                                            className="flex-1 h-10 xs:h-12 bg-gradient-to-r from-[#E3B658] to-[#d4a036] text-black font-bold uppercase tracking-widest rounded-full hover:to-[#E3B658] hover:from-[#d4a036] hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2 shadow-[0_0_25px_rgba(227,182,88,0.3)] hover:shadow-[0_0_35px_rgba(227,182,88,0.5)] whitespace-nowrap px-3 xs:px-6"
                                         >
                                             <ShoppingBag size={18} className="fill-black/10" />
-                                            <span className="text-xs sm:text-sm">Add to Cart</span>
+                                            <span className="text-[10px] xs:text-xs sm:text-sm">Add to Cart</span>
                                         </button>
                                     </div>
                                 </div>

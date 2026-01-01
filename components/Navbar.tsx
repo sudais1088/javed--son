@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect } from "react";
-import { ShoppingBag, User, Menu, X, Search, Gift } from "lucide-react";
+import { ShoppingBag, User, Menu, X, Search } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { useCart } from "@/context/CartContext";
 import { useAuth } from "@/context/AuthContext";
@@ -13,7 +13,7 @@ export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const pathname = usePathname();
-  const { isCartOpen, toggleCart, cartCount, toggleGiftCart, giftCount } = useCart();
+  const { isCartOpen, toggleCart, cartCount } = useCart();
   const { user, openLoginModal, logout } = useAuth();
 
   // Search State
@@ -75,7 +75,6 @@ export default function Navbar() {
             <div className="hidden lg:flex items-center gap-6 xl:gap-8">
               <NavLink href="/">Home</NavLink>
               <NavLink href="/menu">Menu</NavLink>
-              <NavLink href="/gift">Gift</NavLink>
               <NavLink href="#about">About Us</NavLink>
               <NavLink href="/contact">Contact</NavLink>
             </div>
@@ -140,7 +139,7 @@ export default function Navbar() {
           </div>
 
           {/* CENTER SECTION - LOGO IMAGE + TEXT */}
-          <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 text-center flex flex-col items-center group cursor-pointer" onClick={() => setIsMobileMenuOpen(false)}>
+          <div className={`absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 text-center items-center group cursor-pointer ${isSearchOpen ? 'hidden lg:flex' : 'flex'}`} onClick={() => setIsMobileMenuOpen(false)}>
             <Link href="/" className="flex items-center gap-3 md:gap-4">
               {/* Logo Image */}
               <div className={`relative overflow-hidden rounded-full border-2 border-primary/50 shadow-[0_0_15px_rgba(227,182,88,0.3)] transition-all duration-300 ${isScrolled ? 'w-12 h-12' : 'w-14 h-14 md:w-16 md:h-16'}`}>
@@ -153,8 +152,8 @@ export default function Navbar() {
                 />
               </div>
 
-              {/* Text Branding (Visible on larger mobile screens and up for less clutter, or always depending on preference. Keeping generally visible but scaling down) */}
-              <div className="flex flex-col items-start text-left">
+              {/* Text Branding - Hidden on mobile */}
+              <div className="hidden md:flex flex-col items-start text-left">
                 <span className={`font-serif text-lg sm:text-2xl font-bold tracking-[0.1em] text-primary transition-all duration-300 whitespace-nowrap`}>
                   JAVED SONS
                 </span>
@@ -166,7 +165,7 @@ export default function Navbar() {
           </div>
 
           {/* RIGHT SECTION - ACTIONS */}
-          <div className="flex items-center gap-4 sm:gap-6 flex-1 justify-end">
+          <div className="flex items-center gap-2 sm:gap-6 flex-1 justify-end">
 
             {/* Search - Icon by default, expands on click */}
             <div className={`relative hidden lg:flex items-center transition-all duration-300 ${isSearchOpen ? 'w-full sm:w-64 bg-black border border-[#E3B658] rounded-full px-3 py-1.5' : 'w-auto'}`}>
@@ -227,18 +226,7 @@ export default function Navbar() {
               )}
             </div>
 
-            {/* Gift Toggle */}
-            <button
-              onClick={toggleGiftCart}
-              className="relative p-2 text-white/80 hover:text-[#E3B658] transition-colors"
-            >
-              <Gift size={22} strokeWidth={1.5} />
-              {giftCount > 0 && (
-                <span className="absolute top-0 right-0 w-4 h-4 bg-[#E3B658] text-[10px] font-bold text-black flex items-center justify-center rounded-full">
-                  {giftCount}
-                </span>
-              )}
-            </button>
+
 
             {/* Cart Button (Moved before Login) */}
             <button
